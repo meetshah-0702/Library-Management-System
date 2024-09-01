@@ -3,10 +3,12 @@ package src.test;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 import org.junit.platform.commons.util.ExceptionUtils;
 import src.Library;
 import src.Book;
+
 
 public class LibraryManagementTest {
 
@@ -83,5 +85,23 @@ public class LibraryManagementTest {
 
         assertTrue(library.isBookAvailable("123456789"));
     }
+
+    @Test
+    public void testFailedForViewingAllAvailableBooks() {
+        Library library = new Library();
+        Book book1 = new Book("123456789", "Effective Java", "Joshua Bloch", 2008);
+        Book book2 = new Book("987654321", "Clean Code", "Robert C. Martin", 2008);
+        library.addBook(book1);
+        library.addBook(book2);
+            
+        library.borrowBook("987654321");
+
+        List<Book> availableBooks = library.viewAvailableBooks();
+
+        assertEquals(2, availableBooks.size());
+        assertTrue(availableBooks.contains(book1));
+        assertTrue(availableBooks.contains(book2));
+    }
+
 
 }

@@ -2,6 +2,8 @@ package src;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
     private Map<String, Book> books = new HashMap<>();
@@ -24,6 +26,10 @@ public class Library {
 
     public void returnBook(Book book) {
         books.put(book.getIsbn(), book);
+    }
+
+    public List<Book> viewAvailableBooks() {
+        return new ArrayList<>(books.values());
     }
 
 
