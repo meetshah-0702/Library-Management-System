@@ -14,5 +14,14 @@ public class LibraryManagementTest {
 
         assertTrue(library.isBookAvailable("123456789"));
     }
+    
 
+    @Test
+    public void testAddBookSuccess() {
+        Library library = new Library();
+        Book book = new Book("123456789", "Effective Java", "Joshua Bloch", 2008);
+        library.addBook(book);
+
+        assertTrue(library.isBookAvailable("123456789"));
+    }
 }
