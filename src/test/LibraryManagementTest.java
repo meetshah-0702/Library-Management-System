@@ -1,5 +1,6 @@
 package src.test;
 
+import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +9,7 @@ import src.Library;
 import src.Book;
 
 public class LibraryManagementTest {
+
 
     @Test
     public void testAddBookFailed() {
@@ -50,13 +52,14 @@ public class LibraryManagementTest {
     }
 
     @Test
-    public void TestCaseFailedBecauseExceptionThrownWhileBorrowingBook() {
+    public void TestCaseForHandlingExceptionWhileBorrowimgBook() {
         Library library = new Library();
         Book book = new Book("123456789", "Effective Java", "Joshua Bloch", 2008);
-        library.borrowBook("123456789");
 
 
-        assertTrue(library.isBookAvailable("123456789"));
+
+        Throwable exception = assertThrows(IllegalStateException.class, () -> library.borrowBook("123456789"));
+        assertEquals("Book is not available.", exception.getMessage());
     }
 
 
