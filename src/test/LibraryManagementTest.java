@@ -62,5 +62,15 @@ public class LibraryManagementTest {
         assertEquals("Book is not available.", exception.getMessage());
     }
 
+    @Test
+    public void testFailedWhileReturningBook() {
+        Library library = new Library();
+        Book book = new Book("123456789", "Effective Java", "Joshua Bloch", 2008);
+        library.addBook(book);
+        library.borrowBook("123456789");
+        library.returnBook(book);
+
+        assertFalse(library.isBookAvailable("123456789"));
+    }
 
 }

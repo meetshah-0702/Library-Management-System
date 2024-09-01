@@ -22,4 +22,9 @@ public class Library {
         }
     }
 
+    public void returnBook(Book book) {
+        books.put(book.getIsbn(), book);
+    }
+
+
 }
