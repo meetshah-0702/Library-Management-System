@@ -36,4 +36,15 @@ public class LibraryManagementTest {
         assertTrue(library.isBookAvailable("123456789"));
     }
 
+    @Test
+    public void TestCasePassedAsBookIsAvailableAfterBorrow() {
+        Library library = new Library();
+        Book book = new Book("123456789", "Effective Java", "Joshua Bloch", 2008);
+        library.addBook(book);
+        library.borrowBook("123456789");
+
+
+        assertFalse(library.isBookAvailable("123456789"));
+    }
+
 }
